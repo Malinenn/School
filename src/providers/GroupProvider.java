@@ -5,17 +5,17 @@
  */
 package providers;
 
-import Entity.Person;
+import Entity.Groups;
 import java.util.Scanner;
 
 /**
  *
  * @author Melnikov
  */
-public class BookProvider {
+public class GroupProvider {
     private Scanner scanner = new Scanner(System.in);
-    public Person createPerson() {
-        Person person = new Person();
+    public Groups createGroups() {
+        Groups groups = new Groups();
         System.out.println("-------Создание книги--------");
         String inputNumber = "";
         Long id = null;
@@ -30,13 +30,11 @@ public class BookProvider {
                System.out.println("Ошибка ввода!");
            }
         }while(flag);
-        person.setId(id);
+        groups.setId(id);
         System.out.print("Название книги: ");
-        person.setName(scanner.nextLine());
+        groups.setName(scanner.nextLine());
         System.out.print("Автор книги: ");
-        person.setLastname(scanner.nextLine());
-        System.out.print("ISBN книги: ");
-        person.setStatus(scanner.nextLine());
+        groups.setProfessiya(scanner.nextLine());
         int year=0;
         flag=true;
         do{
@@ -49,8 +47,8 @@ public class BookProvider {
                System.out.println("Ошибка ввода!");
            }
         }while(flag);
-        person.se(flag);
-        return person;
+        groups.setName(flag);
+        return groups;
     }
     
 }

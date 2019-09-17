@@ -8,9 +8,13 @@ package school;
 import Entity.Groups;
 import Entity.Person;
 import Entity.Teachers;
+import interfaces.Saveble;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import providers.GroupProvider;
+import providers.PersonProvider;
+import providers.TeachersProvider;
 
 /**
  *
@@ -23,21 +27,21 @@ public class App {
     
     private Saveble savable;
     public App() {
-       savable = new StorageInBase();
+       savable = new StorageInFile();
        //savable = new StorageInFile();
         try {
-            listGroup = savable.loadBookFromStorage();
+            listGroup = savable.loadGroupsFromFile();
         } catch (Exception e) {
             System.out.println("Нет данных");
         }
        
         try {
-            listPerson = savable.loadReaderFromStorage();
+            listPerson = savable.loadPersonFromFile();
         } catch (Exception e) {
             System.out.println("Нет данных");
         }
         try {
-            listTeachers = savable.loadHistoriesFromStorage();
+            listTeachers = savable.loadTeachersFromFile();
         } catch (Exception e) {
             System.out.println("Нет данных");
         }
@@ -61,9 +65,9 @@ public class App {
             scanner.nextLine();
             switch (operation) {
                 case 1:
-                    BookProvider bookProvider = new BookProvider();
-                    listGroup.add(bookProvider.createBook());
-                    savable.saveBooks(listGroup);
+                    GroupProvider groupProvider = new GroupProvider();
+                    listGroup.add(groupProvider.createGroups());
+                    savable.saveGroups(listGroup);
                     for(int i=0; i < listGroup.size();i++){
                        System.out.println("Список книг1: " 
                             + listGroup.get(i).getName()
@@ -71,9 +75,9 @@ public class App {
                     }
                     break;
                 case 2:
-                    ReaderProvider readerProvider = new ReaderProvider();
-                    listPerson.add(readerProvider.createReader());
-                    savable.saveReaders(listPerson);
+                    PersonProvider personProvider = new PersonProvider();
+                    listPerson.add(personProvider.createPerson());
+                    savable.savePerson(listPerson);
                     for(int i=0; i < listPerson.size();i++){
                        System.out.println(
                             "Список читателей2: " 
@@ -82,11 +86,11 @@ public class App {
                     }
                     break;
                 case 3:
-                    TakeBookProvider takeBookProvider = new TakeBookProvider();
-                    listTeachers.add(takeBookProvider.takeBook(listGroup,
+                    TeachersProvider teachersProvider = new TeachersProvider();
+                    listTeachers.add(teachersProvider.takeGroups(listGroup,
                             listPerson
                     ));
-                    savable.saveHistories(listTeachers);
+                    savable.saveTeachers(listTeachers);
                     break;
                 case 4:
                     ReturnBookProvider returnBookProvider = new ReturnBookProvider();
@@ -120,4 +124,3 @@ public class App {
     
 }
     
-}

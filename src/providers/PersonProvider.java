@@ -4,19 +4,17 @@
  * and open the template in the editor.
  */
 package providers;
-
-import entity.Book;
-import entity.Reader;
+import Entity.Person;
 import java.util.Scanner;
 
 /**
  *
  * @author Melnikov
  */
-public class ReaderProvider {
+public class PersonProvider {
     private Scanner scanner = new Scanner(System.in);
-    public Reader createReader() {
-        Reader reader = new Reader();
+    public Person createPerson() {
+        Person person = new Person();
         System.out.println("-------Создание читателя--------");
         String inputNumber = "";
         Long id = null;
@@ -31,15 +29,15 @@ public class ReaderProvider {
                System.out.println("Ошибка ввода!");
            }
         }while(flag);
-        reader.setId(id);
+        person.setId(id);
         System.out.print("Имя читателя: ");
-        reader.setName(scanner.nextLine());
+        person.setName(scanner.nextLine());
         System.out.print("Фамилия читателя: ");
-        reader.setSurname(scanner.nextLine());
+        person.setLastname(scanner.nextLine());
         System.out.print("Телефон читателя: ");
-        reader.setPhone(scanner.nextLine());
+        person.setStatus(scanner.nextLine());
         
-        return reader;
+        return person;
     }
     
 }

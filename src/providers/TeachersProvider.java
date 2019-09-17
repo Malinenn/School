@@ -15,7 +15,7 @@ import java.util.Scanner;
  *
  * @author Melnikov
  */
-public class ReturnBookProvider {
+public class TeachersProvider {
 private Scanner scanner = new Scanner(System.in);
     public  List<History> returnBook(List<History> listHistories) {
         System.out.println("Список выданных книг:");
