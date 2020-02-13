@@ -1,5 +1,2 @@
-/nbproject
-build.xml
-/dist
-/build
-/test
+/build/
+/dist/
